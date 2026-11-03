@@ -141,7 +141,7 @@ function Kpi({ icon, iconCls, title, value, sub, trend, danger }: {
       <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${iconCls}`}>{icon}</div>
       <div className="min-w-0">
         <div className={`text-xs font-medium ${danger ? "text-danger" : ""}`}>{title}</div>
-        <div className={`text-xl font-bold ${danger ? "text-danger" : ""}`}>{value}</div>
+        <div className={`text-lg font-bold whitespace-nowrap ${danger ? "text-danger" : ""}`}>{value}</div>
         <div className="text-xs">{sub}</div>
         {trend}
       </div>
@@ -151,7 +151,7 @@ function Kpi({ icon, iconCls, title, value, sub, trend, danger }: {
 
 function KpiRow() {
   return (
-    <div className="grid grid-cols-2 gap-2.5 md:grid-cols-3 2xl:grid-cols-6">
+    <div className="grid grid-cols-2 gap-2.5 md:grid-cols-3 xl:grid-cols-6">
       <Kpi icon={<Coins className="h-6 w-6" />} iconCls="bg-success-soft text-success" title="Toplam Alacak" value="₺2.450.000" sub="28 müşteri"
         trend={<div className="mt-0.5 text-[9px] text-muted-foreground"><span className="font-semibold text-success">↗ %12</span> (Önceki 30 gün)</div>} />
       <Kpi icon={<ShoppingCart className="h-6 w-6" />} iconCls="bg-info-soft text-primary" title="Toplam Borç" value="₺1.180.000" sub="74 tedarikçi"
@@ -177,7 +177,7 @@ function CashFlow() {
     { x: 565, label: ["4. Haftta", "(22 – 30 Kas)"], bal: 720000, t: 290000, o: 490000 },
   ];
   const fmt = (v: number) => "₺" + v.toLocaleString("tr-TR");
-  const pts = groups.map((g) => `${g.x},${y(g.bal) - 30}`).join(" ");
+  const pts = groups.map((g) => `${g.x},${y(g.bal) - 5}`).join(" ");
   return (
     <div className="card p-3">
       <div className="flex items-center gap-2">
@@ -201,7 +201,7 @@ function CashFlow() {
             {v === 0 ? "₺0" : fmt(v)}
           </text>
         ))}
-        <polygon points={`${groups[0].x},${bottom} ${pts} ${groups[4].x + 40},${y(720000) - 10} ${groups[4].x + 40},${bottom}`} fill="url(#area)" />
+        <polygon points={`${groups[0].x},${bottom} ${pts} ${groups[4].x + 40},${y(720000) + 10} ${groups[4].x + 40},${bottom}`} fill="url(#area)" />
         {groups.map((g) =>
           g.t ? (
             <g key={g.x}>
@@ -215,9 +215,9 @@ function CashFlow() {
         <polyline points={pts} fill="none" stroke="var(--violet)" strokeWidth="2" />
         {groups.map((g) => (
           <g key={"p" + g.x}>
-            <circle cx={g.x} cy={y(g.bal) - 30} r="4.5" fill="var(--card)" stroke="var(--violet)" strokeWidth="2" />
-            <rect x={g.x - 36} y={y(g.bal) - 62} width="72" height="20" rx="6" fill="var(--violet-soft)" />
-            <text x={g.x} y={y(g.bal) - 48} fontSize="11" fontWeight="700" textAnchor="middle" fill="var(--violet)">{fmt(g.bal)}</text>
+            <circle cx={g.x} cy={y(g.bal) - 5} r="4.5" fill="var(--card)" stroke="var(--violet)" strokeWidth="2" />
+            <rect x={g.x - 36} y={y(g.bal) - 37} width="72" height="20" rx="6" fill="var(--violet-soft)" />
+            <text x={g.x} y={y(g.bal) - 23} fontSize="11" fontWeight="700" textAnchor="middle" fill="var(--violet)">{fmt(g.bal)}</text>
             <text x={g.x} y={bottom + 14} fontSize="10" textAnchor="middle" fill="var(--foreground)">{g.label[0]}</text>
             <text x={g.x} y={bottom + 27} fontSize="10" textAnchor="middle" fill="var(--foreground)">{g.label[1]}</text>
           </g>
