@@ -201,7 +201,7 @@ function CashFlow() {
             {v === 0 ? "₺0" : fmt(v)}
           </text>
         ))}
-        <polygon points={`${groups[0].x},${bottom} ${pts} ${groups[4].x + 40},${y(720000) + 10} ${groups[4].x + 40},${bottom}`} fill="url(#area)" />
+        <polygon points={`${groups[0]!.x},${bottom} ${pts} ${groups[4]!.x + 40},${y(720000) + 10} ${groups[4]!.x + 40},${bottom}`} fill="url(#area)" />
         {groups.map((g) =>
           g.t ? (
             <g key={g.x}>
