@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AkilliAnalizlerRouteImport } from './routes/akilli-analizler'
+import { Route as CariHesaplarRouteImport } from './routes/cari-hesaplar'
+import { Route as NakitPlaniRouteImport } from './routes/nakit-plani'
+import { Route as RaporlarRouteImport } from './routes/raporlar'
+import { Route as TahsilatOdemeRouteImport } from './routes/tahsilat-odeme'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AkilliAnalizlerRoute = AkilliAnalizlerRouteImport.update({
+  id: '/akilli-analizler',
+  path: '/akilli-analizler',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CariHesaplarRoute = CariHesaplarRouteImport.update({
+  id: '/cari-hesaplar',
+  path: '/cari-hesaplar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NakitPlaniRoute = NakitPlaniRouteImport.update({
+  id: '/nakit-plani',
+  path: '/nakit-plani',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RaporlarRoute = RaporlarRouteImport.update({
+  id: '/raporlar',
+  path: '/raporlar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TahsilatOdemeRoute = TahsilatOdemeRouteImport.update({
+  id: '/tahsilat-odeme',
+  path: '/tahsilat-odeme',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/akilli-analizler': typeof AkilliAnalizlerRoute
+  '/cari-hesaplar': typeof CariHesaplarRoute
+  '/nakit-plani': typeof NakitPlaniRoute
+  '/raporlar': typeof RaporlarRoute
+  '/tahsilat-odeme': typeof TahsilatOdemeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/akilli-analizler': typeof AkilliAnalizlerRoute
+  '/cari-hesaplar': typeof CariHesaplarRoute
+  '/nakit-plani': typeof NakitPlaniRoute
+  '/raporlar': typeof RaporlarRoute
+  '/tahsilat-odeme': typeof TahsilatOdemeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/akilli-analizler': typeof AkilliAnalizlerRoute
+  '/cari-hesaplar': typeof CariHesaplarRoute
+  '/nakit-plani': typeof NakitPlaniRoute
+  '/raporlar': typeof RaporlarRoute
+  '/tahsilat-odeme': typeof TahsilatOdemeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/akilli-analizler'
+    | '/cari-hesaplar'
+    | '/nakit-plani'
+    | '/raporlar'
+    | '/tahsilat-odeme'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/akilli-analizler'
+    | '/cari-hesaplar'
+    | '/nakit-plani'
+    | '/raporlar'
+    | '/tahsilat-odeme'
+  id:
+    | '__root__'
+    | '/'
+    | '/akilli-analizler'
+    | '/cari-hesaplar'
+    | '/nakit-plani'
+    | '/raporlar'
+    | '/tahsilat-odeme'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AkilliAnalizlerRoute: typeof AkilliAnalizlerRoute
+  CariHesaplarRoute: typeof CariHesaplarRoute
+  NakitPlaniRoute: typeof NakitPlaniRoute
+  RaporlarRoute: typeof RaporlarRoute
+  TahsilatOdemeRoute: typeof TahsilatOdemeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/akilli-analizler': {
+      id: '/akilli-analizler'
+      path: '/akilli-analizler'
+      fullPath: '/akilli-analizler'
+      preLoaderRoute: typeof AkilliAnalizlerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cari-hesaplar': {
+      id: '/cari-hesaplar'
+      path: '/cari-hesaplar'
+      fullPath: '/cari-hesaplar'
+      preLoaderRoute: typeof CariHesaplarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nakit-plani': {
+      id: '/nakit-plani'
+      path: '/nakit-plani'
+      fullPath: '/nakit-plani'
+      preLoaderRoute: typeof NakitPlaniRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/raporlar': {
+      id: '/raporlar'
+      path: '/raporlar'
+      fullPath: '/raporlar'
+      preLoaderRoute: typeof RaporlarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tahsilat-odeme': {
+      id: '/tahsilat-odeme'
+      path: '/tahsilat-odeme'
+      fullPath: '/tahsilat-odeme'
+      preLoaderRoute: typeof TahsilatOdemeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AkilliAnalizlerRoute: AkilliAnalizlerRoute,
+  CariHesaplarRoute: CariHesaplarRoute,
+  NakitPlaniRoute: NakitPlaniRoute,
+  RaporlarRoute: RaporlarRoute,
+  TahsilatOdemeRoute: TahsilatOdemeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

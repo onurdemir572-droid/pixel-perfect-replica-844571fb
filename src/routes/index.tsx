@@ -6,6 +6,7 @@ import {
   UserCheck, Star, FileSpreadsheet, Download, Database, Banknote,
 } from "lucide-react";
 import type { ReactNode } from "react";
+import { FinanceShell } from "@/components/finance-shell";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -21,115 +22,24 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const tabs = [
-  { label: "Genel Bakış", icon: Home, active: true },
-  { label: "Cari Hesaplar", icon: Users },
-  { label: "Tahsilat / Ödeme", icon: ArrowLeftRight },
-  { label: "Nakit Planı", icon: BarChart3 },
-  { label: "Akıllı Analizler", icon: TrendingUp },
-];
-
 function Index() {
   return (
-    <div className="min-h-screen bg-background font-sans text-foreground">
-      {/* Top bar */}
-      <header className="flex h-14 items-center bg-topbar px-6">
-        <div className="mx-auto flex w-full max-w-xl items-center gap-3 rounded-lg border border-border bg-card px-4 py-2 text-sm text-muted-foreground shadow-card">
-          <Search className="h-4 w-4" />
-          <span className="truncate">Ürün, cari, fatura, sipariş veya rapor ara...</span>
-          <span className="ml-auto">(Ctrl + K)</span>
-        </div>
-        <div className="ml-6 flex items-center gap-6">
-          <div className="relative">
-            <Bell className="h-6 w-6" />
-            <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-danger" />
-          </div>
-          <HelpCircle className="h-6 w-6" />
-          <Grid3x3 className="h-6 w-6" />
-          <div className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">MK</div>
-            <div className="leading-tight">
-              <div className="text-sm font-semibold">Mehmet Kaya</div>
-              <div className="text-xs text-muted-foreground">Merkez Şube</div>
-            </div>
-            <ChevronDown className="h-4 w-4" />
-          </div>
-        </div>
-      </header>
-
-      <main className="px-6 pb-8">
-        <div className="flex items-center gap-2 py-2.5 text-sm">
-          <span className="text-muted-foreground">Raporlar</span>
-          <ChevronRight className="h-4 w-4 text-muted-foreground" />
-          <span className="font-semibold">Cari & Finans Merkezi</span>
-        </div>
-
-        {/* Title row */}
-        <div className="flex flex-wrap items-center gap-4">
-          <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-brand text-primary-foreground shadow-card">
-            <Database className="h-8 w-8" />
-          </div>
-          <div>
-            <h1 className="text-[28px] font-bold leading-tight">Cari & Finans Merkezi</h1>
-            <p className="text-sm">Alacak, borç, tahsilat, ödeme ve nakit yönetimi</p>
-          </div>
-          <div className="ml-auto flex flex-wrap items-center gap-4">
-            <div className="card flex items-center gap-4 px-4 py-2">
-              <Calendar className="h-5 w-5" />
-              <div className="leading-tight">
-                <div className="text-xs font-medium">Dönem</div>
-                <div className="text-sm font-semibold">Son 30 Gün</div>
-                <div className="text-[11px] text-muted-foreground">01 Eki 2026 – 30 Eki 2026</div>
-              </div>
-              <ChevronUp className="ml-6 h-4 w-4" />
-            </div>
-            <div className="card flex w-56 items-center px-4 py-2">
-              <div className="leading-tight">
-                <div className="text-xs font-medium">Şube</div>
-                <div className="text-base">Tüm Şubeler</div>
-              </div>
-              <ChevronDown className="ml-auto h-4 w-4" />
-            </div>
-            <button className="card flex items-center gap-2 px-6 py-3 text-base font-medium">
-              <Filter className="h-5 w-5" /> Diğer Filtreler
-            </button>
-          </div>
-        </div>
-
-        {/* Tabs */}
-        <nav className="mt-4 flex items-center gap-10 border-b border-border pb-2">
-          {tabs.map((t) =>
-            t.active ? (
-              <button key={t.label} className="flex items-center gap-3 rounded-xl bg-primary px-9 py-2.5 text-base font-semibold text-primary-foreground shadow-card">
-                <t.icon className="h-5 w-5" /> {t.label}
-              </button>
-            ) : (
-              <button key={t.label} className="flex items-center gap-2.5 text-base font-medium">
-                <t.icon className="h-5 w-5" /> {t.label}
-              </button>
-            ),
-          )}
-          <button className="ml-auto mr-28 flex items-center gap-2.5 text-base font-medium">
-            <FileText className="h-5 w-5" /> Raporlar
-          </button>
-        </nav>
-
-        <div className="mt-4 grid grid-cols-1 gap-4 xl:grid-cols-[1fr_330px]">
+    <FinanceShell>
+        <div className="grid grid-cols-1 gap-4 xl:grid-cols-[minmax(0,1fr)_320px]">
           <div className="space-y-4 min-w-0">
             <KpiRow />
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.25fr_1fr]">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
               <CashFlow />
               <Aging />
             </div>
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_1fr]">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
               <Attention />
               <Analyses />
             </div>
           </div>
           <RightColumn />
         </div>
-      </main>
-    </div>
+    </FinanceShell>
   );
 }
 
@@ -137,7 +47,7 @@ function Kpi({ icon, iconCls, title, value, sub, trend, danger }: {
   icon: ReactNode; iconCls: string; title: string; value: string; sub: string; trend?: ReactNode; danger?: boolean;
 }) {
   return (
-    <div className={`card flex gap-3 p-3 ${danger ? "bg-danger-soft" : ""}`}>
+    <div className={`card flex min-w-0 gap-3 p-3 ${danger ? "bg-danger-soft" : ""}`}>
       <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${iconCls}`}>{icon}</div>
       <div className="min-w-0">
         <div className={`text-xs font-medium ${danger ? "text-danger" : ""}`}>{title}</div>
@@ -151,7 +61,7 @@ function Kpi({ icon, iconCls, title, value, sub, trend, danger }: {
 
 function KpiRow() {
   return (
-    <div className="grid grid-cols-2 gap-2.5 md:grid-cols-3 xl:grid-cols-6">
+    <div className="grid grid-cols-2 gap-2.5 md:grid-cols-3 2xl:grid-cols-6">
       <Kpi icon={<Coins className="h-6 w-6" />} iconCls="bg-success-soft text-success" title="Toplam Alacak" value="₺2.450.000" sub="28 müşteri"
         trend={<div className="mt-0.5 text-[9px] text-muted-foreground"><span className="font-semibold text-success">↗ %12</span> (Önceki 30 gün)</div>} />
       <Kpi icon={<ShoppingCart className="h-6 w-6" />} iconCls="bg-info-soft text-primary" title="Toplam Borç" value="₺1.180.000" sub="74 tedarikçi"
