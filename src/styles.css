@@ -142,3 +142,41 @@
     color: var(--color-foreground);
   }
 }
+
+:root {
+  --primary: oklch(0.56 0.21 259);
+  --primary-foreground: oklch(1 0 0);
+  --background: oklch(0.975 0.006 255);
+  --foreground: oklch(0.2 0.03 260);
+  --border: oklch(0.92 0.01 255);
+  --success: oklch(0.68 0.17 152);
+  --success-soft: oklch(0.95 0.05 152);
+  --warning: oklch(0.8 0.16 80);
+  --warning-soft: oklch(0.96 0.05 85);
+  --orange: oklch(0.72 0.17 55);
+  --danger: oklch(0.6 0.22 25);
+  --danger-soft: oklch(0.96 0.03 20);
+  --violet: oklch(0.55 0.22 290);
+  --violet-soft: oklch(0.95 0.03 290);
+  --info-soft: oklch(0.95 0.03 255);
+  --topbar: oklch(0.95 0.015 255);
+  --gradient-brand: linear-gradient(135deg, oklch(0.62 0.2 290), oklch(0.5 0.22 275));
+  --shadow-card: 0 1px 3px oklch(0.3 0.05 260 / 0.08), 0 1px 2px oklch(0.3 0.05 260 / 0.04);
+}
+@theme inline {
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-orange: var(--orange);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-violet: var(--violet);
+  --color-violet-soft: var(--violet-soft);
+  --color-info-soft: var(--info-soft);
+  --color-topbar: var(--topbar);
+  --shadow-card: var(--shadow-card);
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+@utility bg-brand { background: var(--gradient-brand); }
+@utility card { background: var(--card); border: 1px solid var(--border); border-radius: 0.75rem; box-shadow: var(--shadow-card); }
